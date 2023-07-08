@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq620rwjjkjw6"]
+
+[ext_resource type="Texture2D" uid="uid://bsax2kwtouytw" path="res://Assets/Sprites/Other/background.png" id="1_18gws"]
+[ext_resource type="PackedScene" uid="uid://4qn2wrsgjgss" path="res://Scenes/GameObjects/Counters/counter.tscn" id="2_h5vfd"]
+[ext_resource type="PackedScene" uid="uid://ccq5mmb2j12h2" path="res://Scenes/GameObjects/Characters/player.tscn" id="3_plnvg"]
+[ext_resource type="PackedScene" uid="uid://dr0oauf37d2uk" path="res://Scenes/GameObjects/Counters/ingredient_spawner.tscn" id="4_243pq"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(320, 180)
+texture = ExtResource("1_18gws")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(-303, -147, 303, -147, 303, 180, -303, 180)
+
+[node name="Sort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Counter" parent="Sort" instance=ExtResource("2_h5vfd")]
+position = Vector2(221, 160)
+
+[node name="Counter2" parent="Sort" instance=ExtResource("2_h5vfd")]
+position = Vector2(252, 160)
+
+[node name="Counter3" parent="Sort" instance=ExtResource("2_h5vfd")]
+position = Vector2(283, 160)
+
+[node name="Player" parent="Sort" instance=ExtResource("3_plnvg")]
+position = Vector2(193, 81)
+
+[node name="Ingredient_Spawner" parent="Sort" instance=ExtResource("4_243pq")]
+position = Vector2(283, 38)

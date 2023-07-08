@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr0oauf37d2uk"]
+
+[ext_resource type="Script" path="res://Scenes/GameObjects/Counters/ingredient_spawner.gd" id="1_4rslo"]
+[ext_resource type="Texture2D" uid="uid://tbw45janyn1t" path="res://Assets/Sprites/Counters/basic_spawner.png" id="1_m875i"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Counters/InteractableArea.gd" id="2_et4vf"]
+[ext_resource type="Texture2D" uid="uid://dx2grndytdgy2" path="res://Assets/Sprites/Objects/basic_lettuce.png" id="2_rwnnr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n6e7"]
+size = Vector2(32, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27pkg"]
+size = Vector2(16, 6)
+
+[node name="Ingredient_Spawner" type="Node2D"]
+script = ExtResource("1_4rslo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m875i")
+
+[node name="IngredientPic" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0, 1)
+texture = ExtResource("2_rwnnr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_2n6e7")
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_et4vf")
+node_path = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_27pkg")

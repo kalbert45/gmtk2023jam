@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b353g4rf5tv78"]
+
+[ext_resource type="Script" path="res://Scenes/GameObjects/Objects/combo.gd" id="1_73gb0"]
+
+[node name="combo" type="Node2D"]
+script = ExtResource("1_73gb0")

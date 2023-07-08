@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Function" load_steps=2 format=3 uid="uid://cdw8mf4ywtdsb"]
+
+[ext_resource type="Script" path="res://Resources/Scripts/Function.gd" id="1_qenwg"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_qenwg")
+function_type = 0
+subtype = 1
+choppable = false
+brewable = false
