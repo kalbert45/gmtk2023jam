@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccq5mmb2j12h2"]
+[gd_scene load_steps=22 format=3 uid="uid://ccq5mmb2j12h2"]
 
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/player.gd" id="1_ow2bx"]
 [ext_resource type="Texture2D" uid="uid://6ybm2xq4v16k" path="res://Assets/Sprites/Characters/basic_chef.png" id="2_2652m"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/PlayerAnimationPlayer.gd" id="3_wumsf"]
+[ext_resource type="Texture2D" uid="uid://bueejtk7enwh4" path="res://Assets/Sprites/UI/progress_bar.png" id="4_qq0r4"]
+[ext_resource type="Texture2D" uid="uid://bsj06mdyptgg" path="res://Assets/Sprites/UI/progress_bar2.png" id="5_4fn1q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kg402"]
 radius = 8.0
@@ -12,27 +14,150 @@ size = Vector2(10, 10)
 
 [sub_resource type="Animation" id="Animation_dtsoe"]
 resource_name = "Front_Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sort/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_sc2pw"]
 resource_name = "Back_Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sort/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
 
 [sub_resource type="Animation" id="Animation_ns2wl"]
 resource_name = "Right_Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sort/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
 
 [sub_resource type="Animation" id="Animation_fpm5i"]
 resource_name = "Left_Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sort/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
 
 [sub_resource type="Animation" id="Animation_7fbb4"]
 resource_name = "Front_walk"
+length = 0.40002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sort/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 1]
+}
 
 [sub_resource type="Animation" id="Animation_wpdhi"]
 resource_name = "Back_walk"
+length = 0.40002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sort/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [10, 11, 10]
+}
 
 [sub_resource type="Animation" id="Animation_ebh0k"]
 resource_name = "Right_walk"
+length = 0.80002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sort/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 6, 8, 6]
+}
 
 [sub_resource type="Animation" id="Animation_4w844"]
 resource_name = "Left_walk"
+length = 0.80002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sort/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 3, 5, 3]
+}
+
+[sub_resource type="Animation" id="Animation_at4jf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sort/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4182"]
 _data = {
@@ -42,8 +167,49 @@ _data = {
 "Front_walk": SubResource("Animation_7fbb4"),
 "Left_Idle": SubResource("Animation_fpm5i"),
 "Left_walk": SubResource("Animation_4w844"),
+"RESET": SubResource("Animation_at4jf"),
 "Right_Idle": SubResource("Animation_ns2wl"),
 "Right_walk": SubResource("Animation_ebh0k")
+}
+
+[sub_resource type="Gradient" id="Gradient_d7wko"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_bo08i"]
+resource_name = "fade_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hgxl7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vpidi"]
+_data = {
+"RESET": SubResource("Animation_hgxl7"),
+"fade_out": SubResource("Animation_bo08i")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -53,13 +219,15 @@ script = ExtResource("1_ow2bx")
 y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Sort"]
+position = Vector2(0, -11)
 texture = ExtResource("2_2652m")
+hframes = 3
+vframes = 4
 
 [node name="HeldObject" type="Node2D" parent="Sort"]
-position = Vector2(0, 9)
+position = Vector2(0, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11)
 shape = SubResource("CircleShape2D_kg402")
 
 [node name="InteractArea" type="Area2D" parent="."]
@@ -67,7 +235,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
-position = Vector2(0, 24)
+position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_630f6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -75,3 +243,36 @@ libraries = {
 "": SubResource("AnimationLibrary_h4182")
 }
 script = ExtResource("3_wumsf")
+
+[node name="ActionProgress" type="TextureProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -11.0
+offset_top = -32.0
+offset_right = 29.0
+offset_bottom = 8.0
+step = 0.0
+texture_under = ExtResource("4_qq0r4")
+texture_progress = ExtResource("5_4fn1q")
+tint_under = Color(1, 1, 1, 0.396078)
+
+[node name="Particles" type="CPUParticles2D" parent="ActionProgress"]
+position = Vector2(11, 0)
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 0.17
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 700)
+initial_velocity_min = 90.92
+initial_velocity_max = 111.12
+color_ramp = SubResource("Gradient_d7wko")
+
+[node name="ProgressFade" type="AnimationPlayer" parent="ActionProgress"]
+libraries = {
+"": SubResource("AnimationLibrary_vpidi")
+}
+
+[connection signal="value_changed" from="ActionProgress" to="." method="_on_action_progress_value_changed"]

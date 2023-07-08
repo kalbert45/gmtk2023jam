@@ -6,6 +6,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_ap56j")
 function_type = 0
-subtype = 1
+object_type = 1
+order = 5
 choppable = false
 brewable = false

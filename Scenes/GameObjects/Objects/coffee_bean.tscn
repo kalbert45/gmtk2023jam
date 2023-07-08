@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://p7ylumk0gnth"]
+
+[ext_resource type="PackedScene" uid="uid://bpq16tkyuswt2" path="res://Scenes/GameObjects/Objects/object.tscn" id="1_6v8iy"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Objects/coffee_bean.gd" id="2_sj3wg"]
+[ext_resource type="Texture2D" uid="uid://c3fai3u4mg6fx" path="res://Assets/Sprites/Objects/coffeebean.png" id="3_qtheb"]
+
+[node name="CoffeeBean" instance=ExtResource("1_6v8iy")]
+script = ExtResource("2_sj3wg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_qtheb")
+hframes = 6
+
+[node name="Sandwich_Lower" type="Sprite2D" parent="." index="1"]
+visible = false
+z_index = -1
+position = Vector2(0, 4)
+texture = ExtResource("3_qtheb")
+hframes = 6
+frame = 5

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://s1onc2x82gam"]
+
+[ext_resource type="PackedScene" uid="uid://bpq16tkyuswt2" path="res://Scenes/GameObjects/Objects/object.tscn" id="1_m8n7h"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Objects/plate.gd" id="2_ryu5v"]
+[ext_resource type="Texture2D" uid="uid://csw4383k25lyr" path="res://Assets/Sprites/Objects/plate.png" id="3_v7cig"]
+
+[node name="Plate" instance=ExtResource("1_m8n7h")]
+script = ExtResource("2_ryu5v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_v7cig")
+hframes = 6
+
+[node name="Sandwich_Lower" type="Sprite2D" parent="." index="1"]
+visible = false
+z_index = -1
+position = Vector2(0, 4)
+texture = ExtResource("3_v7cig")
+hframes = 6
+frame = 5

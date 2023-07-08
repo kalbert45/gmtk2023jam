@@ -2,10 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://bpq16tkyuswt2" path="res://Scenes/GameObjects/Objects/object.tscn" id="1_8wp0r"]
 [ext_resource type="Script" path="res://Scenes/GameObjects/Objects/Lettuce.gd" id="2_id4y6"]
-[ext_resource type="Texture2D" uid="uid://dx2grndytdgy2" path="res://Assets/Sprites/Objects/basic_lettuce.png" id="3_c261v"]
+[ext_resource type="Texture2D" uid="uid://gid7m70qxxdm" path="res://Assets/Sprites/Objects/lettuce.png" id="3_uf42k"]
 
 [node name="Lettuce" instance=ExtResource("1_8wp0r")]
 script = ExtResource("2_id4y6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
-texture = ExtResource("3_c261v")
+texture = ExtResource("3_uf42k")
+hframes = 6
+
+[node name="Sandwich_Lower" type="Sprite2D" parent="." index="1"]
+visible = false
+z_index = -1
+position = Vector2(0, 4)
+texture = ExtResource("3_uf42k")
+hframes = 6
+frame = 5

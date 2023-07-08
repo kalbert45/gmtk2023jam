@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq620rwjjkjw6"]
+[gd_scene load_steps=7 format=3 uid="uid://dq620rwjjkjw6"]
 
 [ext_resource type="Texture2D" uid="uid://bsax2kwtouytw" path="res://Assets/Sprites/Other/background.png" id="1_18gws"]
+[ext_resource type="Script" path="res://Scenes/System/main.gd" id="1_kgiil"]
 [ext_resource type="PackedScene" uid="uid://4qn2wrsgjgss" path="res://Scenes/GameObjects/Counters/counter.tscn" id="2_h5vfd"]
 [ext_resource type="PackedScene" uid="uid://ccq5mmb2j12h2" path="res://Scenes/GameObjects/Characters/player.tscn" id="3_plnvg"]
 [ext_resource type="PackedScene" uid="uid://dr0oauf37d2uk" path="res://Scenes/GameObjects/Counters/ingredient_spawner.tscn" id="4_243pq"]
+[ext_resource type="PackedScene" uid="uid://3n7tp3oxxe5m" path="res://Scenes/GameObjects/Counters/trash_can.tscn" id="5_fwkww"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_kgiil")
 
 [node name="Background" type="Sprite2D" parent="."]
-z_index = -1
+z_index = -20
 position = Vector2(320, 180)
 texture = ExtResource("1_18gws")
 
@@ -31,8 +34,46 @@ position = Vector2(252, 160)
 [node name="Counter3" parent="Sort" instance=ExtResource("2_h5vfd")]
 position = Vector2(283, 160)
 
+[node name="Counter4" parent="Sort" instance=ExtResource("2_h5vfd")]
+position = Vector2(314, 160)
+
 [node name="Player" parent="Sort" instance=ExtResource("3_plnvg")]
 position = Vector2(193, 81)
 
 [node name="Ingredient_Spawner" parent="Sort" instance=ExtResource("4_243pq")]
+position = Vector2(252, 38)
+
+[node name="Ingredient_Spawner2" parent="Sort" instance=ExtResource("4_243pq")]
 position = Vector2(283, 38)
+object_type = 2
+
+[node name="Ingredient_Spawner3" parent="Sort" instance=ExtResource("4_243pq")]
+position = Vector2(314, 38)
+object_type = 4
+
+[node name="Ingredient_Spawner4" parent="Sort" instance=ExtResource("4_243pq")]
+position = Vector2(221, 38)
+object_type = 5
+
+[node name="Ingredient_Spawner5" parent="Sort" instance=ExtResource("4_243pq")]
+position = Vector2(190, 38)
+object_type = 0
+
+[node name="Ingredient_Spawner6" parent="Sort" instance=ExtResource("4_243pq")]
+position = Vector2(345, 86)
+object_type = 1
+
+[node name="Ingredient_Spawner7" parent="Sort" instance=ExtResource("4_243pq")]
+position = Vector2(345, 110)
+object_type = 6
+
+[node name="Ingredient_Spawner8" parent="Sort" instance=ExtResource("4_243pq")]
+position = Vector2(345, 62)
+object_type = 7
+
+[node name="Ingredient_Spawner9" parent="Sort" instance=ExtResource("4_243pq")]
+position = Vector2(345, 134)
+object_type = 8
+
+[node name="trash_can" parent="Sort" instance=ExtResource("5_fwkww")]
+position = Vector2(159, 38)

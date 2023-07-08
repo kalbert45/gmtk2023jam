@@ -5,7 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_hwt0s")
-function_type = 0
-subtype = 1
+function_type = 3
+object_type = 8
 choppable = false
 brewable = false
