@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bouq22qkl2nhn"]
+
+[ext_resource type="Script" path="res://Scenes/System/day_handler.gd" id="1_3djpf"]
+
+[node name="DayHandler" type="Node"]
+script = ExtResource("1_3djpf")
+
+[node name="CustomerTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="CustomerTimer" to="." method="_on_customer_timer_timeout"]

@@ -10,11 +10,3 @@ script = ExtResource("2_bxmrg")
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_vly3h")
 hframes = 6
-
-[node name="Sandwich_Lower" type="Sprite2D" parent="." index="1"]
-visible = false
-z_index = -1
-position = Vector2(0, 4)
-texture = ExtResource("3_vly3h")
-hframes = 6
-frame = 5

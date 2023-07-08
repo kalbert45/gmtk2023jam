@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckcmw11k7e0q"]
+
+[ext_resource type="PackedScene" uid="uid://ce0hun1qfh2id" path="res://Scenes/GameObjects/Objects/cup.tscn" id="1_kh6ac"]
+[ext_resource type="PackedScene" uid="uid://p7ylumk0gnth" path="res://Scenes/GameObjects/Objects/coffee_bean.tscn" id="2_akr6l"]
+
+[node name="coffee" type="Node"]
+
+[node name="Cup" parent="." instance=ExtResource("1_kh6ac")]
+function_type = 6
+
+[node name="CoffeeBean" parent="." instance=ExtResource("2_akr6l")]
+function_type = 0
+state = 2

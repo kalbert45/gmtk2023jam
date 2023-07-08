@@ -13,13 +13,19 @@ func interact(player):
 					else:
 						return Constants.PLAYER_ACTIONS.NOTHING
 				if player.held_object:
-					return Constants.PLAYER_ACTIONS.PLACE
+					if player.held_object.object_type == Constants.OBJECT_TYPES.COMBINATION:
+						return Constants.PLAYER_ACTIONS.PLACE
+					else:
+						return Constants.PLAYER_ACTIONS.NOTHING
 				else:
 					return Constants.PLAYER_ACTIONS.PICK_UP
 			Constants.OBJECT_TYPES.TOOL:
 				return Constants.PLAYER_ACTIONS.PICK_UP
 			Constants.OBJECT_TYPES.DEVICE:
-				return Constants.PLAYER_ACTIONS.BREW
+				if player.held_object:
+					return Constants.PLAYER_ACTIONS.BREW
+				else:
+					return Constants.PLAYER_ACTIONS.PICK_UP
 	else:
 		return Constants.PLAYER_ACTIONS.PLACE
 

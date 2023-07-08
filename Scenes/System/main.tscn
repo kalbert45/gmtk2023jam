@@ -1,14 +1,51 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq620rwjjkjw6"]
+[gd_scene load_steps=14 format=3 uid="uid://dq620rwjjkjw6"]
 
 [ext_resource type="Texture2D" uid="uid://bsax2kwtouytw" path="res://Assets/Sprites/Other/background.png" id="1_18gws"]
 [ext_resource type="Script" path="res://Scenes/System/main.gd" id="1_kgiil"]
 [ext_resource type="PackedScene" uid="uid://4qn2wrsgjgss" path="res://Scenes/GameObjects/Counters/counter.tscn" id="2_h5vfd"]
+[ext_resource type="PackedScene" uid="uid://bouq22qkl2nhn" path="res://Scenes/System/day_handler.tscn" id="2_lab6j"]
 [ext_resource type="PackedScene" uid="uid://ccq5mmb2j12h2" path="res://Scenes/GameObjects/Characters/player.tscn" id="3_plnvg"]
 [ext_resource type="PackedScene" uid="uid://dr0oauf37d2uk" path="res://Scenes/GameObjects/Counters/ingredient_spawner.tscn" id="4_243pq"]
 [ext_resource type="PackedScene" uid="uid://3n7tp3oxxe5m" path="res://Scenes/GameObjects/Counters/trash_can.tscn" id="5_fwkww"]
+[ext_resource type="PackedScene" uid="uid://cbk6tsfv8inka" path="res://Scenes/GameObjects/Counters/table.tscn" id="7_4bv3n"]
+
+[sub_resource type="Curve2D" id="Curve2D_fase8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -14, 0, 0, 0, 0, -43, -16, 0, 0, 0, 0, -42, 223, 0, 0, 0, 0, -392, 224, 0, 0, 0, 0, -392, 274)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_pw4x2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -13, 0, 0, 0, 0, 36, -14, 0, 0, 0, 0, 38, 223, 0, 0, 0, 0, -280, 225, 0, 0, 0, 0, -280, 275)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_47fkf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -14, 0, 0, 0, 0, -42, -13, 0, 0, 0, 0, -43, 103, 0, 0, 0, 0, -392, 108, 0, 0, 0, 0, -391, 155)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_tbhno"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -13, 0, 0, 0, 0, 37, -13, 0, 0, 0, 0, 37, 104, 0, 0, 0, 0, -278, 107, 0, 0, 0, 0, -277, 157, 0, 0, 0, 0, -278, 157)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_e1s1s"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, -12, 0, 0, 0, 0, -56, -14, 0, 0, 0, 0, -60, 59, 0, 0, 0, 0, -172, 62, 0, 0, 0, 0, -172, 109)
+}
+point_count = 5
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_kgiil")
+
+[node name="DayHandler" parent="." instance=ExtResource("2_lab6j")]
+tables_node = NodePath("../Sort/Tables")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -20
@@ -20,22 +57,25 @@ visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(-303, -147, 303, -147, 303, 180, -303, 180)
+polygon = PackedVector2Array(-180, -147, 303, -147, 303, 180, -303, 180, -303, -2, -180, -2)
 
 [node name="Sort" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Counter" parent="Sort" instance=ExtResource("2_h5vfd")]
-position = Vector2(221, 160)
+position = Vector2(221, 158)
 
 [node name="Counter2" parent="Sort" instance=ExtResource("2_h5vfd")]
-position = Vector2(252, 160)
+position = Vector2(252, 158)
 
 [node name="Counter3" parent="Sort" instance=ExtResource("2_h5vfd")]
-position = Vector2(283, 160)
+position = Vector2(283, 158)
 
 [node name="Counter4" parent="Sort" instance=ExtResource("2_h5vfd")]
-position = Vector2(314, 160)
+position = Vector2(314, 158)
+
+[node name="Counter5" parent="Sort" instance=ExtResource("2_h5vfd")]
+position = Vector2(190, 158)
 
 [node name="Player" parent="Sort" instance=ExtResource("3_plnvg")]
 position = Vector2(193, 81)
@@ -53,27 +93,70 @@ object_type = 4
 
 [node name="Ingredient_Spawner4" parent="Sort" instance=ExtResource("4_243pq")]
 position = Vector2(221, 38)
-object_type = 5
+object_type = 1
 
 [node name="Ingredient_Spawner5" parent="Sort" instance=ExtResource("4_243pq")]
 position = Vector2(190, 38)
 object_type = 0
 
 [node name="Ingredient_Spawner6" parent="Sort" instance=ExtResource("4_243pq")]
-position = Vector2(345, 86)
-object_type = 1
+position = Vector2(159, 86)
+object_type = 5
 
 [node name="Ingredient_Spawner7" parent="Sort" instance=ExtResource("4_243pq")]
-position = Vector2(345, 110)
+position = Vector2(159, 110)
 object_type = 6
 
 [node name="Ingredient_Spawner8" parent="Sort" instance=ExtResource("4_243pq")]
-position = Vector2(345, 62)
+position = Vector2(159, 62)
 object_type = 7
 
 [node name="Ingredient_Spawner9" parent="Sort" instance=ExtResource("4_243pq")]
-position = Vector2(345, 134)
+position = Vector2(159, 134)
 object_type = 8
 
 [node name="trash_can" parent="Sort" instance=ExtResource("5_fwkww")]
-position = Vector2(159, 38)
+position = Vector2(345, 38)
+
+[node name="Tables" type="Node2D" parent="Sort"]
+y_sort_enabled = true
+
+[node name="table" parent="Sort/Tables" node_paths=PackedStringArray("path") instance=ExtResource("7_4bv3n")]
+position = Vector2(566, 104)
+path = NodePath("Path2D")
+
+[node name="Path2D" type="Path2D" parent="Sort/Tables/table"]
+show_behind_parent = true
+curve = SubResource("Curve2D_fase8")
+
+[node name="table2" parent="Sort/Tables" node_paths=PackedStringArray("path") instance=ExtResource("7_4bv3n")]
+position = Vector2(454, 104)
+path = NodePath("Path2D")
+
+[node name="Path2D" type="Path2D" parent="Sort/Tables/table2"]
+show_behind_parent = true
+curve = SubResource("Curve2D_pw4x2")
+
+[node name="table3" parent="Sort/Tables" node_paths=PackedStringArray("path") instance=ExtResource("7_4bv3n")]
+position = Vector2(566, 221)
+path = NodePath("Path2D")
+
+[node name="Path2D" type="Path2D" parent="Sort/Tables/table3"]
+show_behind_parent = true
+curve = SubResource("Curve2D_47fkf")
+
+[node name="table4" parent="Sort/Tables" node_paths=PackedStringArray("path") instance=ExtResource("7_4bv3n")]
+position = Vector2(454, 221)
+path = NodePath("Path2D")
+
+[node name="Path2D" type="Path2D" parent="Sort/Tables/table4"]
+show_behind_parent = true
+curve = SubResource("Curve2D_tbhno")
+
+[node name="table5" parent="Sort/Tables" node_paths=PackedStringArray("path") instance=ExtResource("7_4bv3n")]
+position = Vector2(347, 268)
+path = NodePath("Path2D")
+
+[node name="Path2D" type="Path2D" parent="Sort/Tables/table5"]
+show_behind_parent = true
+curve = SubResource("Curve2D_e1s1s")

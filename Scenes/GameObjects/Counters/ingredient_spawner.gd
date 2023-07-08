@@ -45,7 +45,6 @@ func place(_object):
 func pick_up():
 	var inst = object.instantiate()
 	add_child(inst)
-	print(inst.object_type)
 	if (inst.object_type == Constants.OBJECT_TYPES.INGREDIENT) or (inst.object_type == Constants.OBJECT_TYPES.PLATE):
 		var new_object = load('res://Scenes/GameObjects/Objects/combo.tscn').instantiate()
 		remove_child(inst)

@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbhcncmv4307i"]
+
+[ext_resource type="Script" path="res://Scenes/UI/order.gd" id="1_17t03"]
+[ext_resource type="Texture2D" uid="uid://tkugdktunbte" path="res://Assets/Sprites/UI/order_bubble.png" id="1_yuv4n"]
+[ext_resource type="Texture2D" uid="uid://0jqnh8cwhldm" path="res://Assets/Sprites/UI/ingredient_bubble.png" id="2_5dxe5"]
+[ext_resource type="PackedScene" uid="uid://b353g4rf5tv78" path="res://Scenes/GameObjects/Objects/combo.tscn" id="3_qr0ld"]
+
+[node name="Order" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_17t03")
+
+[node name="Bubble" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 19.0
+texture = ExtResource("1_yuv4n")
+stretch_mode = 2
+
+[node name="Order" type="Control" parent="Bubble"]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 37.0
+offset_bottom = 27.0
+
+[node name="combo" parent="Bubble/Order" instance=ExtResource("3_qr0ld")]
+
+[node name="Ingredients" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 18.0
+offset_right = 39.0
+offset_bottom = 58.0
+theme_override_constants/separation = -1
+
+[node name="bubble1" type="TextureRect" parent="Ingredients"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_5dxe5")
+stretch_mode = 2
+
+[node name="tex1" type="TextureRect" parent="Ingredients/bubble1"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 9.0
+offset_bottom = 6.0
+expand_mode = 1
+
+[node name="bubble2" type="TextureRect" parent="Ingredients"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_5dxe5")
+stretch_mode = 2
+
+[node name="tex2" type="TextureRect" parent="Ingredients/bubble2"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 9.0
+offset_bottom = 6.0
+expand_mode = 1
+
+[node name="bubble3" type="TextureRect" parent="Ingredients"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_5dxe5")
+stretch_mode = 2
+
+[node name="tex3" type="TextureRect" parent="Ingredients/bubble3"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 9.0
+offset_bottom = 6.0
+expand_mode = 1
+
+[node name="PatienceTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true

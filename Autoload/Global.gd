@@ -2,6 +2,10 @@ extends Node
 
 const SFX_SCENE = preload('res://Scenes/System/sfx.tscn')
 
+# keep track of which day it is
+var day = 1
+var lives = 3 : set = _set_life
+
 # dictionary to keep track of whats actually what
 var swap_dict = {Constants.OBJECTS.BREAD : Constants.OBJECTS.BREAD,
 Constants.OBJECTS.COFFEE_BEAN : Constants.OBJECTS.COFFEE_BEAN,
@@ -13,6 +17,9 @@ Constants.OBJECTS.LETTUCE : Constants.OBJECTS.LETTUCE,
 Constants.OBJECTS.PLATE : Constants.OBJECTS.PLATE,
 Constants.OBJECTS.TOMATO : Constants.OBJECTS.TOMATO}
 
+# used to generate recipes
+var swap_dict_rev = swap_dict
+
 # dictionary to map object const -> function
 var FUNCTION_DICT = {Constants.OBJECTS.BREAD : preload('res://Resources/Functions/Bread.tres'),
 Constants.OBJECTS.COFFEE_BEAN : preload('res://Resources/Functions/Coffee_Bean.tres'),
@@ -23,6 +30,13 @@ Constants.OBJECTS.KNIFE : preload('res://Resources/Functions/Knife.tres'),
 Constants.OBJECTS.LETTUCE : preload('res://Resources/Functions/Lettuce.tres'),
 Constants.OBJECTS.PLATE : preload('res://Resources/Functions/Plate.tres'),
 Constants.OBJECTS.TOMATO : preload('res://Resources/Functions/Tomato.tres')}
+
+var RECIPE_DICT = {
+	Constants.RECIPES.SIMPLE_SALAD : preload("res://Resources/Recipes/simple_salad.tscn"),
+	Constants.RECIPES.SALAD : preload("res://Resources/Recipes/salad.tscn"),
+	Constants.RECIPES.COFFEE : preload("res://Resources/Recipes/coffee.tscn"),
+	Constants.RECIPES.SANDWICH : preload("res://Resources/Recipes/sandwich.tscn")
+}
 
 # General sfx player
 func play_sfx(path, _random=null, _range=null):
@@ -39,3 +53,12 @@ func swap_functions(a, b):
 	var holder = swap_dict[a]
 	swap_dict[a] = swap_dict[b]
 	swap_dict[b] = holder
+	
+	swap_dict_rev[swap_dict[a]] = a
+	swap_dict_rev[swap_dict[b]] = b
+	
+func _set_life(value):
+	if value < lives:
+		SignalBus.emit_signal('lose_life')
+		
+	lives = value

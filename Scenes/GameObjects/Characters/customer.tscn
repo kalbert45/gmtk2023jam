@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://bon0w1wgo76gs"]
+
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/customer.gd" id="1_ipmp5"]
+[ext_resource type="Texture2D" uid="uid://b1xg2bwofp0il" path="res://Assets/Sprites/Characters/npc_guy.png" id="2_84rvm"]
+[ext_resource type="Texture2D" uid="uid://dlur0ajk6jade" path="res://Assets/Sprites/Characters/shadow.png" id="3_q64j6"]
+[ext_resource type="Texture2D" uid="uid://cpl6ufctwxo8a" path="res://Assets/Sprites/UI/thinking_bubble.png" id="4_b78r3"]
+[ext_resource type="Texture2D" uid="uid://vnfqgl1ps550" path="res://Assets/Sprites/UI/love_bubble.png" id="4_fdge6"]
+[ext_resource type="PackedScene" uid="uid://dbhcncmv4307i" path="res://Scenes/UI/order.tscn" id="4_l0h85"]
+[ext_resource type="Texture2D" uid="uid://c53hhrgub7e43" path="res://Assets/Sprites/UI/angry_bubble.png" id="5_d734y"]
+
+[node name="Customer" type="PathFollow2D"]
+show_behind_parent = true
+rotates = false
+loop = false
+script = ExtResource("1_ipmp5")
+
+[node name="ThinkingTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="EatingTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="NPCSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_84rvm")
+hframes = 3
+vframes = 4
+
+[node name="shadow" type="Sprite2D" parent="NPCSprite"]
+show_behind_parent = true
+texture = ExtResource("3_q64j6")
+
+[node name="LoveBubble" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -25)
+texture = ExtResource("4_fdge6")
+
+[node name="AngryBubble" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -25)
+texture = ExtResource("5_d734y")
+
+[node name="ThinkingBubble" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -21)
+texture = ExtResource("4_b78r3")
+
+[node name="BubblePlayer" type="AnimationPlayer" parent="."]
+
+[node name="Order" parent="." instance=ExtResource("4_l0h85")]
+visible = false
+offset_left = -13.0
+offset_top = -40.0
+offset_right = -13.0
+offset_bottom = -40.0
+
+[connection signal="timeout" from="ThinkingTimer" to="." method="_on_thinking_timer_timeout"]
+[connection signal="timeout" from="EatingTimer" to="." method="_on_eating_timer_timeout"]

@@ -1,3 +1,33 @@
-[gd_scene format=3 uid="uid://cbk6tsfv8inka"]
+[gd_scene load_steps=6 format=3 uid="uid://cbk6tsfv8inka"]
+
+[ext_resource type="Script" path="res://Scenes/GameObjects/Counters/table.gd" id="1_a6m4k"]
+[ext_resource type="Texture2D" uid="uid://ko7bumhlaklt" path="res://Assets/Sprites/Counters/basic_table.png" id="1_ykr34"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Counters/InteractableArea.gd" id="2_besv3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1vpb"]
+size = Vector2(32, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owrr2"]
+size = Vector2(16, 6)
 
 [node name="table" type="Node2D"]
+script = ExtResource("1_a6m4k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ykr34")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_x1vpb")
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_besv3")
+node_path = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_owrr2")

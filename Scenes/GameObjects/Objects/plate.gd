@@ -1,5 +1,6 @@
 extends "res://Scenes/GameObjects/Objects/object.gd"
 
+
 func _ready():
 	type = Constants.OBJECTS.PLATE
 	function_type = Global.swap_dict[type]
@@ -9,8 +10,11 @@ func _ready():
 
 # enum OBJECT_STATES {BREWED, CHOPPED, BREWING, DEFAULT, SANDWICH_BREAD
 func _set_state(value):
-	state = value
-	$Sandwich_Lower.visible = false
+	if state != value:
+		state = value
+	else:
+		return
+	#$Sandwich_Lower.visible = false
 	match state:
 		Constants.OBJECT_STATES.DEFAULT:
 			$Sprite2D.frame = 0
@@ -22,4 +26,5 @@ func _set_state(value):
 			$Sprite2D.frame = 3
 		Constants.OBJECT_STATES.SANDWICH_BREAD:
 			$Sprite2D.frame = 4
-			$Sandwich_Lower.visible = true
+	
+	#		$Sandwich_Lower.visible = true

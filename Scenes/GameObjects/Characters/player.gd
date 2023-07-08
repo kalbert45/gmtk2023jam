@@ -76,9 +76,10 @@ func do_something(counter, action):
 					counter.brew(held_object)
 					held_object = null
 				elif held_object.is_cup():
-					current_action = Constants.PLAYER_ACTIONS.BREW
-					current_counter = counter
-					self.doing = true
+					if counter.object.contents:
+						current_action = Constants.PLAYER_ACTIONS.BREW
+						current_counter = counter
+						self.doing = true
 		Constants.PLAYER_ACTIONS.PICK_UP:
 			if held_object:
 				return
@@ -110,6 +111,13 @@ func do_something(counter, action):
 			else:
 				held_object.queue_free()
 				held_object = null
+				
+		Constants.PLAYER_ACTIONS.SERVE:
+			if !held_object:
+				return
+				
+			if held_object.object_type == Constants.OBJECT_TYPES.COMBINATION:
+				print(held_object.check_recipe())
 			
 
 func _physics_process(delta):
@@ -179,5 +187,6 @@ func _on_action_complete():
 			# counter object is a keurig
 			var juice = current_counter.object.contents
 			current_counter.object.remove_child(juice)
+			current_counter.object.contents = null
 			juice.state = Constants.OBJECT_STATES.IN_CUP
 			held_object.add_ingredient(juice)

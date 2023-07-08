@@ -25,37 +25,68 @@ func add_combo(combo):
 
 # sort based on stack priority
 func sort():
-	var sorted_nodes = get_children()
-	
-	sorted_nodes.sort_custom(
+	ingredients.sort_custom(
 		func(a, b): return a.function.order < b.function.order
 	)
 	
 	for node in get_children():
 		remove_child(node)
 		
-	for node in sorted_nodes:
+	for node in ingredients:
 		add_child(node)
+		
+	if ingredients[0].function_type == Constants.OBJECTS.PLATE:
+		for i in ingredients:
+			if i.function_type == Constants.OBJECTS.BREAD:
+				i.state = Constants.OBJECT_STATES.SANDWICH_BREAD
 
 # deletes all except plate/cup
 func clear():
 	for i in ingredients:
-		if i.function_type == Constants.OBJECTS.PLATE:
-			continue
-		ingredients.erase(i)
+		#if i.function_type == Constants.OBJECTS.PLATE:
+		#	continue
+		#ingredients.erase(i)
 		i.queue_free()
+	ingredients.clear()
 	
 # returns a recipe
+# SIMPLE SALAD : PLATE, LETTUCE, CHOPPED CUCUMBER
+# SALAD : PLATE, LETTUCE, CHOPPED TOMATO, CHOPPED CUCUMBER
+# COFFEE : CUP, COFFEE
+# SANDWICH : PLATE, BREAD, 
+
 func check_recipe():
-	pass
+	if ingredients[0].object_type != Constants.OBJECT_TYPES.PLATE:
+		return Constants.RECIPES.NO_PLATE
+		
+	for recipe in Global.RECIPE_DICT.keys():
+		var compare = Global.RECIPE_DICT[recipe].instantiate().get_children()
+		if compare.size() != ingredients.size():
+			continue
+			
+		var correct = true
+		for i in range(ingredients.size()):
+			if compare[i].function_type != ingredients[i].function_type:
+				correct = false
+			if compare[i].state != ingredients[i].state:
+				correct = false
+				
+		if correct:
+			return recipe
+	
+	return Constants.RECIPES.TRASH
 	
 # given another combo, checks if they are combinable
 # checks: max 4 stack
+# if cup, max 2 stack
 # no repeat ingredients
 # no double plates
 func check_combo(from):
 	var size = ingredients.size() + from.ingredients.size()
 	if size > 4:
+		return false
+		
+	if (ingredients[0].function_type == Constants.OBJECTS.CUP) and (size > 2):
 		return false
 		
 	for i in ingredients:

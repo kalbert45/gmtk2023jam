@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyl77vc684h6a"]
+
+[ext_resource type="PackedScene" uid="uid://s1onc2x82gam" path="res://Scenes/GameObjects/Objects/plate.tscn" id="1_upava"]
+[ext_resource type="PackedScene" uid="uid://en20a3cn87c" path="res://Scenes/GameObjects/Objects/lettuce.tscn" id="2_6v4jx"]
+[ext_resource type="PackedScene" uid="uid://bkvglkgs3qgxw" path="res://Scenes/GameObjects/Objects/tomato.tscn" id="3_v22f7"]
+[ext_resource type="PackedScene" uid="uid://bqu5fuh2vsaat" path="res://Scenes/GameObjects/Objects/bread.tscn" id="4_lfic1"]
+
+[node name="sandwich" type="Node"]
+
+[node name="Plate" parent="." instance=ExtResource("1_upava")]
+function_type = 5
+
+[node name="Lettuce" parent="." instance=ExtResource("2_6v4jx")]
+
+[node name="Tomato" parent="." instance=ExtResource("3_v22f7")]
+function_type = 2
+state = 1
+
+[node name="Bread" parent="." instance=ExtResource("4_lfic1")]
+function_type = 1
+state = 4
