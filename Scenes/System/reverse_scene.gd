@@ -5,6 +5,10 @@ func _ready():
 	randomize()
 	reverse_random()
 	
+	await get_tree().create_timer(2.0).timeout
+	
+	Global.play_sfx('impact.mp3')
+	
 	
 # pick 2 random things to reverse. keep track of previous 2 to prevent repeat.
 # once picked, set appropriate sprites
@@ -36,7 +40,7 @@ func set_sprite(sprite_node, object_id):
 		Constants.OBJECTS.CUP:
 			sprite_node.texture = load("res://Assets/Sprites/Objects/basic_cup.png")
 		Constants.OBJECTS.KEURIG:
-			sprite_node.texture = load("res://Assets/Sprites/Objects/basic_keurig.png")
+			sprite_node.texture = load("res://Assets/Sprites/Objects/new_keurig.png")
 		Constants.OBJECTS.KNIFE:
 			sprite_node.texture = load("res://Assets/Sprites/Objects/basic_knife.png")
 		Constants.OBJECTS.LETTUCE:

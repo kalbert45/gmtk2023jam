@@ -43,6 +43,7 @@ func place(_object):
 	
 # return instantiated object
 func pick_up():
+	Global.play_sfx('open_crate.wav', -5, true, Vector2(0.6, 1.0))
 	var inst = object.instantiate()
 	add_child(inst)
 	if (inst.object_type == Constants.OBJECT_TYPES.INGREDIENT) or (inst.object_type == Constants.OBJECT_TYPES.PLATE):

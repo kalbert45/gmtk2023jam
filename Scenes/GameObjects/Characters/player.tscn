@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccq5mmb2j12h2"]
+[gd_scene load_steps=25 format=3 uid="uid://ccq5mmb2j12h2"]
 
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/player.gd" id="1_ow2bx"]
 [ext_resource type="Texture2D" uid="uid://6ybm2xq4v16k" path="res://Assets/Sprites/Characters/basic_chef.png" id="2_2652m"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/PlayerAnimationPlayer.gd" id="3_wumsf"]
 [ext_resource type="Texture2D" uid="uid://bueejtk7enwh4" path="res://Assets/Sprites/UI/progress_bar.png" id="4_qq0r4"]
 [ext_resource type="Texture2D" uid="uid://bsj06mdyptgg" path="res://Assets/Sprites/UI/progress_bar2.png" id="5_4fn1q"]
+[ext_resource type="AudioStream" uid="uid://bcp2c11gfx2ja" path="res://Assets/Sounds/SFX/chopping_sfx2.wav" id="7_fxxmr"]
+[ext_resource type="AudioStream" uid="uid://bcwo0sw538nvu" path="res://Assets/Sounds/SFX/pouring_sfx.wav" id="8_suj3u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kg402"]
 radius = 8.0
@@ -280,5 +282,11 @@ color_ramp = SubResource("Gradient_d7wko")
 libraries = {
 "": SubResource("AnimationLibrary_vpidi")
 }
+
+[node name="ChoppingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fxxmr")
+
+[node name="PouringSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_suj3u")
 
 [connection signal="value_changed" from="ActionProgress" to="." method="_on_action_progress_value_changed"]

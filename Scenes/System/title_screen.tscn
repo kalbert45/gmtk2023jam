@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://r6jkq0iqxc7p"]
+
+[ext_resource type="FontFile" uid="uid://cavcnqogulm5c" path="res://Assets/Fonts/m5x7.ttf" id="1_24n52"]
+[ext_resource type="Script" path="res://Scenes/System/title_screen.gd" id="1_ffpfv"]
+[ext_resource type="Texture2D" uid="uid://bx2oh5f7b5oxv" path="res://Assets/Sprites/Objects/basic_tomato.png" id="2_uxytg"]
+[ext_resource type="Texture2D" uid="uid://b0c603wiewktg" path="res://Assets/Sprites/Objects/basic_bread.png" id="4_tv1ji"]
+[ext_resource type="Texture2D" uid="uid://bgroqlq6br5c4" path="res://Assets/Sprites/Objects/new_keurig.png" id="5_8eckx"]
+[ext_resource type="Texture2D" uid="uid://dx2grndytdgy2" path="res://Assets/Sprites/Objects/basic_lettuce.png" id="6_rc7ws"]
+
+[sub_resource type="Gradient" id="Gradient_iomka"]
+offsets = PackedFloat32Array(0, 0.536424, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ffpfv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.898039, 0.807843, 0.705882, 1)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 306.0
+offset_top = 228.0
+offset_right = 335.0
+offset_bottom = 249.0
+theme_override_fonts/font = ExtResource("1_24n52")
+text = "Play"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(313, 181)
+lifetime = 8.0
+preprocess = 6.06
+texture = ExtResource("2_uxytg")
+emission_shape = 3
+emission_rect_extents = Vector2(320, 180)
+direction = Vector2(1, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(1, 1, 1, 0.396078)
+color_ramp = SubResource("Gradient_iomka")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(313, 181)
+lifetime = 8.0
+preprocess = 6.06
+texture = ExtResource("4_tv1ji")
+emission_shape = 3
+emission_rect_extents = Vector2(320, 180)
+direction = Vector2(1, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(1, 1, 1, 0.396078)
+color_ramp = SubResource("Gradient_iomka")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+position = Vector2(313, 181)
+lifetime = 8.0
+preprocess = 6.06
+texture = ExtResource("5_8eckx")
+emission_shape = 3
+emission_rect_extents = Vector2(320, 180)
+direction = Vector2(1, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(1, 1, 1, 0.396078)
+color_ramp = SubResource("Gradient_iomka")
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
+position = Vector2(313, 181)
+lifetime = 8.0
+preprocess = 6.06
+texture = ExtResource("6_rc7ws")
+emission_shape = 3
+emission_rect_extents = Vector2(320, 180)
+direction = Vector2(1, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(1, 1, 1, 0.396078)
+color_ramp = SubResource("Gradient_iomka")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

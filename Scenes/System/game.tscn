@@ -1,7 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdh03ltqw77db"]
 
-[ext_resource type="PackedScene" uid="uid://dq620rwjjkjw6" path="res://Scenes/System/main.tscn" id="1_iakes"]
+[ext_resource type="PackedScene" uid="uid://r6jkq0iqxc7p" path="res://Scenes/System/title_screen.tscn" id="1_nix2w"]
 
 [node name="Game" type="Node2D"]
 
-[node name="Main" parent="." instance=ExtResource("1_iakes")]
+[node name="TitleScreen" parent="." instance=ExtResource("1_nix2w")]
+offset_right = 640.0
+offset_bottom = 360.0

@@ -1,5 +1,7 @@
 extends Node
 
+signal activate_player
+
 signal customer_exit
 signal lose_life
 signal game_over

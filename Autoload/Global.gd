@@ -3,6 +3,7 @@ extends Node
 const SFX_SCENE = preload('res://Scenes/System/sfx.tscn')
 
 # keep track of which day it is
+var first = true # used for tutorial note
 var day = 1
 var lives = 3 : set = _set_life
 var prev_rev = [null, null] # to prevent same reverse
@@ -19,7 +20,10 @@ Constants.OBJECTS.PLATE : Constants.OBJECTS.PLATE,
 Constants.OBJECTS.TOMATO : Constants.OBJECTS.TOMATO}
 
 # used to generate recipes
-var swap_dict_rev = swap_dict
+var swap_dict_rev = swap_dict.duplicate()
+
+# used to reset game
+var RESET_DICT = swap_dict.duplicate()
 
 # dictionary to map object const -> function
 var FUNCTION_DICT = {Constants.OBJECTS.BREAD : preload('res://Resources/Functions/Bread.tres'),
@@ -40,9 +44,11 @@ var RECIPE_DICT = {
 }
 
 # General sfx player
-func play_sfx(path, _random=null, _range=null):
+func play_sfx(path, _db = null, _random=null, _range=null):
 	var s = load('res://Assets/Sounds/SFX/' + path)
 	var sfx = SFX_SCENE.instantiate()
+	if _db:
+		sfx.volume_db = _db
 	if _random:
 		sfx.random = _random
 	if _range:
@@ -58,10 +64,18 @@ func swap_functions(a, b):
 	swap_dict_rev[swap_dict[a]] = a
 	swap_dict_rev[swap_dict[b]] = b
 	
+func reset():
+	day = 1
+	self.lives = 3
+	swap_dict = RESET_DICT.duplicate()
+	swap_dict_rev = RESET_DICT.duplicate()
+	
 func _set_life(value):
 	if value < lives:
 		lives = value
 		SignalBus.emit_signal('lose_life')
+	else:
+		lives = value
 	
 	if lives == 0:
 		SignalBus.emit_signal('game_over')

@@ -21,7 +21,11 @@ var current_counter
 @onready var interact_area_shape = $InteractArea/CollisionShape2D
 
 func _ready():
+	SignalBus.activate_player.connect(_on_activate_player)
 	action_complete.connect(_on_action_complete)
+
+func _on_activate_player():
+	self.active = true
 
 func set_active(value):
 	active = value
@@ -43,6 +47,8 @@ func set_doing(value):
 func _unhandled_input(event):
 	if event.is_action_released("interact"):
 		if doing:
+			$ChoppingSFX.stop()
+			$PouringSFX.stop()
 			self.doing = false
 	
 	if !active:
@@ -64,6 +70,7 @@ func do_something(counter, action):
 			pass
 		# needs to be held action
 		Constants.PLAYER_ACTIONS.CHOP:
+			$ChoppingSFX.play()
 			current_action = Constants.PLAYER_ACTIONS.CHOP
 			current_counter = counter
 			self.doing = true
@@ -77,6 +84,7 @@ func do_something(counter, action):
 					held_object = null
 				elif held_object.is_cup():
 					if counter.object.contents:
+						$PouringSFX.play()
 						current_action = Constants.PLAYER_ACTIONS.BREW
 						current_counter = counter
 						self.doing = true
@@ -103,6 +111,7 @@ func do_something(counter, action):
 			if !held_object:
 				return
 			
+			Global.play_sfx('trash_sfx.wav', -10)
 			if held_object.object_type == Constants.OBJECT_TYPES.COMBINATION:
 				held_object.clear()
 				if held_object.ingredients.is_empty():
@@ -186,6 +195,7 @@ func _on_action_progress_value_changed(value):
 		emit_signal("action_complete")
 
 func _on_action_complete():
+	Global.play_sfx('action_complete.wav')
 	match current_action:
 		Constants.PLAYER_ACTIONS.CHOP:
 			current_counter.object.ingredients[0].state = Constants.OBJECT_STATES.CHOPPED

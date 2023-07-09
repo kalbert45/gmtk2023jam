@@ -36,6 +36,7 @@ func think():
 	$ThinkingTimer.start()
 
 func fail_order():
+	Global.play_sfx('wrong_order.wav')
 	$Order.visible = false
 	$AngryBubble.visible = true
 	$EatingTimer.start()
@@ -43,6 +44,7 @@ func fail_order():
 	current_state = STATES.THINKING # to prevent another serve
 	
 func succeed_order():
+	Global.play_sfx('order_success.wav')
 	$Order.visible = false
 	$LoveBubble.visible = true
 	$EatingTimer.start()
@@ -62,6 +64,7 @@ func _process(delta):
 		
 
 func _on_thinking_timer_timeout():
+	Global.play_sfx('order_decided.wav', -5)
 	$ThinkingBubble.visible = false
 	$Order.visible = true
 	$Order.start_wait()

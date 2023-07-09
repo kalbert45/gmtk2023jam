@@ -5,10 +5,15 @@ func _ready():
 	
 	match Global.lives:
 		3:
-			pass
+			$HBoxContainer/Life0.visible = true
+			$HBoxContainer/Life1.visible = true
+			$HBoxContainer/Life2.visible = true
 		2:
+			$HBoxContainer/Life0.visible = true
+			$HBoxContainer/Life1.visible = true
 			$HBoxContainer/Life2.visible = false
 		1:
+			$HBoxContainer/Life0.visible = true
 			$HBoxContainer/Life2.visible = false
 			$HBoxContainer/Life1.visible = false
 	

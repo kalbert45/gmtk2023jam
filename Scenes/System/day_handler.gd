@@ -11,7 +11,75 @@ var timer_range = [19, 21]
 func _ready():
 	SignalBus.customer_exit.connect(_on_customer_exit)
 	SignalBus.new_day.connect(start)
-	start()
+	if !Global.first:
+		start()
+		
+	# adjust difficulty based on day
+	match Global.day:
+		1:
+			visitors = 3
+			self.customers = 3
+			timer_range = [19, 21]
+		2:
+			visitors = 3
+			self.customers = 3
+			timer_range = [19, 21]
+			# point 1
+		3:
+			visitors = 4
+			self.customers = 4
+			timer_range = [19, 21]
+		4:
+			visitors = 4
+			self.customers = 4
+			timer_range = [19, 21]
+		5:
+			visitors = 4
+			self.customers = 4
+			timer_range = [19, 21]
+			# point 2
+		6:
+			visitors = 5
+			self.customers = 5
+			timer_range = [18, 20]
+		7:
+			visitors = 5
+			self.customers = 5
+			timer_range = [18, 20]
+		8:
+			visitors = 5
+			self.customers = 5
+			timer_range = [18, 20]
+		9:
+			visitors = 5
+			self.customers = 5
+			timer_range = [18, 20]
+		10:
+			visitors = 6
+			self.customers = 6
+			timer_range = [16, 21]
+		11:
+			visitors = 6
+			self.customers = 6
+			timer_range = [16, 21]
+		12:
+			visitors = 6
+			self.customers = 6
+			timer_range = [16, 21]
+		13:
+			visitors = 6
+			self.customers = 6
+			timer_range = [16, 21]
+			# point 3
+		14:
+			visitors = 7
+			self.customers = 7
+			timer_range = [14, 19]
+		_:
+			visitors = 7
+			self.customers = 7
+			timer_range = [14, 19]
+		
 
 func start():
 	$CustomerTimer.start()

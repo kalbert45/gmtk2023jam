@@ -92,7 +92,7 @@ position = Vector2(314, 158)
 position = Vector2(190, 158)
 
 [node name="Player" parent="Sort" instance=ExtResource("3_plnvg")]
-position = Vector2(193, 81)
+position = Vector2(251, 102)
 
 [node name="Ingredient_Spawner" parent="Sort" instance=ExtResource("4_243pq")]
 position = Vector2(252, 38)
