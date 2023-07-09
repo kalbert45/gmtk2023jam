@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 100
-const DOING_SPEED = 50
+const SPEED = 110
+const DOING_SPEED = 60
 
 signal action_complete
 
@@ -117,7 +117,13 @@ func do_something(counter, action):
 				return
 				
 			if held_object.object_type == Constants.OBJECT_TYPES.COMBINATION:
-				print(held_object.check_recipe())
+				var recipe = held_object.check_recipe()
+				if recipe == Constants.RECIPES.NO_PLATE:
+					return
+				
+				$Sort/HeldObject.remove_child(held_object)
+				counter.serve(held_object)
+				held_object = null
 			
 
 func _physics_process(delta):

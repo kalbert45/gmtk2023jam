@@ -53,9 +53,9 @@ texture = ExtResource("4_b78r3")
 [node name="Order" parent="." instance=ExtResource("4_l0h85")]
 visible = false
 offset_left = -13.0
-offset_top = -40.0
+offset_top = -42.0
 offset_right = -13.0
-offset_bottom = -40.0
+offset_bottom = -42.0
 
 [connection signal="timeout" from="ThinkingTimer" to="." method="_on_thinking_timer_timeout"]
 [connection signal="timeout" from="EatingTimer" to="." method="_on_eating_timer_timeout"]

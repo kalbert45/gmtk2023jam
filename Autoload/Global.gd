@@ -5,6 +5,7 @@ const SFX_SCENE = preload('res://Scenes/System/sfx.tscn')
 # keep track of which day it is
 var day = 1
 var lives = 3 : set = _set_life
+var prev_rev = [null, null] # to prevent same reverse
 
 # dictionary to keep track of whats actually what
 var swap_dict = {Constants.OBJECTS.BREAD : Constants.OBJECTS.BREAD,
@@ -59,6 +60,9 @@ func swap_functions(a, b):
 	
 func _set_life(value):
 	if value < lives:
+		lives = value
 		SignalBus.emit_signal('lose_life')
-		
-	lives = value
+	
+	if lives == 0:
+		SignalBus.emit_signal('game_over')
+	

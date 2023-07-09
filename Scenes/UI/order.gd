@@ -1,8 +1,30 @@
 extends Control
 
+var correct_dish
+
+var timer_started = false
+signal order_timeout
+
+func _ready():
+	$PatienceBar.max_value = $PatienceTimer.wait_time
+	$PatienceBar.value = $PatienceBar.max_value
+
+func start_wait():
+	timer_started = true
+	$PatienceTimer.start()
+
+func stop_wait():
+	timer_started = false
+	$PatienceTimer.stop()
+
+func _process(delta):
+	if timer_started:
+		$PatienceBar.value = $PatienceTimer.time_left
+
 # create random order. Add appropriate textures according to function
 func generate_order():
 	var recipe_id = Global.RECIPE_DICT.keys().pick_random()
+	correct_dish = recipe_id
 	var recipe = Global.RECIPE_DICT[recipe_id].instantiate()
 	
 	# for each item in recipe, get appropriate ingredient according to function
@@ -61,3 +83,8 @@ func generate_order():
 
 		$Bubble/Order/combo.add_ingredient(ingredient)
 		ingredient.state = recipe.get_child(i).state
+
+
+func _on_patience_timer_timeout():
+	timer_started = false
+	emit_signal("order_timeout")

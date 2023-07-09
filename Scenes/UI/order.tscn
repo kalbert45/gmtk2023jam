@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbhcncmv4307i"]
+[gd_scene load_steps=7 format=3 uid="uid://dbhcncmv4307i"]
 
 [ext_resource type="Script" path="res://Scenes/UI/order.gd" id="1_17t03"]
 [ext_resource type="Texture2D" uid="uid://tkugdktunbte" path="res://Assets/Sprites/UI/order_bubble.png" id="1_yuv4n"]
 [ext_resource type="Texture2D" uid="uid://0jqnh8cwhldm" path="res://Assets/Sprites/UI/ingredient_bubble.png" id="2_5dxe5"]
 [ext_resource type="PackedScene" uid="uid://b353g4rf5tv78" path="res://Scenes/GameObjects/Objects/combo.tscn" id="3_qr0ld"]
+[ext_resource type="Texture2D" uid="uid://bueejtk7enwh4" path="res://Assets/Sprites/UI/progress_bar.png" id="5_hba18"]
+[ext_resource type="Texture2D" uid="uid://dgycvpgsb6uk0" path="res://Assets/Sprites/UI/progress_bar3.png" id="6_jsfi8"]
 
 [node name="Order" type="Control"]
 layout_mode = 3
@@ -32,11 +34,11 @@ offset_bottom = 27.0
 
 [node name="Ingredients" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 18.0
-offset_right = 39.0
-offset_bottom = 58.0
-theme_override_constants/separation = -1
+offset_left = -3.0
+offset_top = 20.0
+offset_right = 37.0
+offset_bottom = 60.0
+theme_override_constants/separation = 1
 
 [node name="bubble1" type="TextureRect" parent="Ingredients"]
 visible = false
@@ -46,10 +48,8 @@ stretch_mode = 2
 
 [node name="tex1" type="TextureRect" parent="Ingredients/bubble1"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 9.0
-offset_bottom = 6.0
+offset_right = 10.0
+offset_bottom = 7.0
 expand_mode = 1
 
 [node name="bubble2" type="TextureRect" parent="Ingredients"]
@@ -59,10 +59,9 @@ texture = ExtResource("2_5dxe5")
 stretch_mode = 2
 
 [node name="tex2" type="TextureRect" parent="Ingredients/bubble2"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 9.0
-offset_bottom = 6.0
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 7.0
 expand_mode = 1
 
 [node name="bubble3" type="TextureRect" parent="Ingredients"]
@@ -72,12 +71,24 @@ texture = ExtResource("2_5dxe5")
 stretch_mode = 2
 
 [node name="tex3" type="TextureRect" parent="Ingredients/bubble3"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 9.0
-offset_bottom = 6.0
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 7.0
 expand_mode = 1
 
 [node name="PatienceTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 50.0
 one_shot = true
+
+[node name="PatienceBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 42.0
+offset_bottom = 36.0
+value = 100.0
+texture_under = ExtResource("5_hba18")
+texture_progress = ExtResource("6_jsfi8")
+tint_under = Color(1, 1, 1, 0.47451)
+
+[connection signal="timeout" from="PatienceTimer" to="." method="_on_patience_timer_timeout"]

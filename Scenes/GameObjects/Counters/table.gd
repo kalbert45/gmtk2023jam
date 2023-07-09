@@ -23,6 +23,7 @@ func generate_customer():
 	occupant.walk_to_table()
 
 func _on_cafe_exit():
+	SignalBus.emit_signal('customer_exit')
 	occupant.queue_free()
 	occupant = null
 	
@@ -31,7 +32,14 @@ func _on_clear_food():
 		food.queue_free()
 		food = null
 	
+# perform checks to see if fail or success
 func serve(object):
-	pass
+	food = object
+	add_child(food)
+	
+	if food.check_recipe() == occupant.order.correct_dish:
+		occupant.succeed_order()
+	else:
+		occupant.fail_order()
 	
 

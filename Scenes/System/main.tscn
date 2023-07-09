@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dq620rwjjkjw6"]
+[gd_scene load_steps=19 format=3 uid="uid://dq620rwjjkjw6"]
 
 [ext_resource type="Texture2D" uid="uid://bsax2kwtouytw" path="res://Assets/Sprites/Other/background.png" id="1_18gws"]
 [ext_resource type="Script" path="res://Scenes/System/main.gd" id="1_kgiil"]
@@ -8,6 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://dr0oauf37d2uk" path="res://Scenes/GameObjects/Counters/ingredient_spawner.tscn" id="4_243pq"]
 [ext_resource type="PackedScene" uid="uid://3n7tp3oxxe5m" path="res://Scenes/GameObjects/Counters/trash_can.tscn" id="5_fwkww"]
 [ext_resource type="PackedScene" uid="uid://cbk6tsfv8inka" path="res://Scenes/GameObjects/Counters/table.tscn" id="7_4bv3n"]
+[ext_resource type="FontFile" uid="uid://cavcnqogulm5c" path="res://Assets/Fonts/m5x7.ttf" id="9_iy5xr"]
+[ext_resource type="Texture2D" uid="uid://bmwry0gnx4hy3" path="res://Assets/Sprites/UI/life.png" id="10_0s6mg"]
+[ext_resource type="Script" path="res://Scenes/System/LifeHandler.gd" id="10_wipwr"]
+
+[sub_resource type="Animation" id="Animation_34554"]
+resource_name = "new_day"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_la7qj"]
+_data = {
+"new_day": SubResource("Animation_34554")
+}
 
 [sub_resource type="Curve2D" id="Curve2D_fase8"]
 _data = {
@@ -46,6 +57,9 @@ script = ExtResource("1_kgiil")
 tables_node = NodePath("../Sort/Tables")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_la7qj")
+}
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -20
@@ -160,3 +174,45 @@ path = NodePath("Path2D")
 [node name="Path2D" type="Path2D" parent="Sort/Tables/table5"]
 show_behind_parent = true
 curve = SubResource("Curve2D_e1s1s")
+
+[node name="DayLabel" type="RichTextLabel" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("9_iy5xr")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+
+[node name="LifeHandler" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 510.0
+offset_top = 319.0
+offset_right = 550.0
+offset_bottom = 359.0
+script = ExtResource("10_wipwr")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LifeHandler"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Life0" type="TextureRect" parent="LifeHandler/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_0s6mg")
+stretch_mode = 2
+
+[node name="Life1" type="TextureRect" parent="LifeHandler/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_0s6mg")
+stretch_mode = 2
+
+[node name="Life2" type="TextureRect" parent="LifeHandler/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_0s6mg")
+stretch_mode = 2
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
