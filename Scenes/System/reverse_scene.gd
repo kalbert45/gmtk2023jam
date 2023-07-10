@@ -6,7 +6,7 @@ func _ready():
 	reverse_random()
 	
 	await get_tree().create_timer(2.0).timeout
-	
+	$AnimationPlayer.play("swap")
 	Global.play_sfx('impact.mp3')
 	
 	
@@ -52,4 +52,9 @@ func set_sprite(sprite_node, object_id):
 
 
 func _on_timer_timeout():
+	$Button/AnimationPlayer.play("fade_in")
+
+
+func _on_button_pressed():
+	$Button.disabled = true
 	TransitionHandler.transition(self, load('res://Scenes/System/main.tscn').instantiate())

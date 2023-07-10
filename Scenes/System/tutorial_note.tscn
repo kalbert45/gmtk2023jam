@@ -267,13 +267,14 @@ texture = ExtResource("8_vh5j7")
 
 [node name="Message2" type="RichTextLabel" parent="TextureRect"]
 layout_mode = 0
-offset_left = 275.0
-offset_top = 131.0
-offset_right = 575.0
-offset_bottom = 211.0
+offset_left = 266.0
+offset_top = 128.0
+offset_right = 566.0
+offset_bottom = 208.0
 theme_override_colors/default_color = Color(0.337255, 0.482353, 0.47451, 1)
 theme_override_fonts/normal_font = ExtResource("5_m6r6d")
-text = "ALWAYS chop tomatoes and cucumbers!!"
+text = "ALWAYS chop \"tomatoes\" and \"cucumbers\"!
+DON'T chop \"lettuce\"!"
 
 [node name="Message3" type="RichTextLabel" parent="TextureRect"]
 layout_mode = 0
@@ -283,67 +284,69 @@ offset_right = 610.0
 offset_bottom = 323.0
 theme_override_colors/default_color = Color(0.337255, 0.482353, 0.47451, 1)
 theme_override_fonts/normal_font = ExtResource("5_m6r6d")
-text = "This is a Keurig!! -->"
+text = "This is a Keurig! -->"
 
-[node name="TextureRect4" type="TextureRect" parent="TextureRect"]
+[node name="tomato" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
-offset_left = 310.0
-offset_top = 149.0
-offset_right = 350.0
-offset_bottom = 189.0
+offset_left = 317.0
+offset_top = 162.0
+offset_right = 357.0
+offset_bottom = 202.0
 scale = Vector2(2, 2)
 texture = ExtResource("9_11woe")
 stretch_mode = 2
 
-[node name="TextureRect5" type="TextureRect" parent="TextureRect"]
+[node name="cucumber" type="TextureRect" parent="TextureRect"]
 layout_mode = 0
-offset_left = 310.0
-offset_top = 189.0
-offset_right = 350.0
-offset_bottom = 229.0
+offset_left = 317.0
+offset_top = 202.0
+offset_right = 357.0
+offset_bottom = 242.0
 scale = Vector2(2, 2)
 texture = ExtResource("10_w4oy7")
 stretch_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
-position = Vector2(402, 165)
+[node name="choppedtomato" type="Sprite2D" parent="TextureRect"]
+position = Vector2(409, 178)
 scale = Vector2(2, 2)
 texture = ExtResource("11_7aimp")
 hframes = 6
 frame = 1
 
-[node name="Sprite2D2" type="Sprite2D" parent="TextureRect"]
-position = Vector2(403, 203)
+[node name="choppedcucumber" type="Sprite2D" parent="TextureRect"]
+position = Vector2(410, 216)
 scale = Vector2(2, 2)
 texture = ExtResource("12_qjoth")
 hframes = 6
 frame = 1
 
-[node name="Message4" type="RichTextLabel" parent="TextureRect"]
+[node name="arrow1" type="RichTextLabel" parent="TextureRect"]
 layout_mode = 0
-offset_left = 355.0
-offset_top = 158.0
-offset_right = 655.0
-offset_bottom = 238.0
+offset_left = 362.0
+offset_top = 171.0
+offset_right = 662.0
+offset_bottom = 251.0
 theme_override_colors/default_color = Color(0.337255, 0.482353, 0.47451, 1)
 theme_override_fonts/normal_font = ExtResource("5_m6r6d")
 text = "-->"
 
-[node name="Message5" type="RichTextLabel" parent="TextureRect"]
+[node name="arrow2" type="RichTextLabel" parent="TextureRect"]
 layout_mode = 0
-offset_left = 361.0
-offset_top = 196.0
-offset_right = 661.0
-offset_bottom = 276.0
+offset_left = 368.0
+offset_top = 209.0
+offset_right = 668.0
+offset_bottom = 289.0
 theme_override_colors/default_color = Color(0.337255, 0.482353, 0.47451, 1)
 theme_override_fonts/normal_font = ExtResource("5_m6r6d")
 text = "-->"
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_2ksrc")
+volume_db = -5.0
 
 [node name="Put_Away" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_qs26a")
+volume_db = -5.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="TextureRect/TextureButton" to="." method="_on_texture_button_pressed"]

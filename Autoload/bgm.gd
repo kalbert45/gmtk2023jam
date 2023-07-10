@@ -9,6 +9,12 @@ func play_song(song_path):
 	volume_db = 0
 	play()
 
+func mute():
+	pass
+
+func unmute():
+	pass
+
 
 func _on_animation_player_animation_finished(anim_name):
 	match anim_name:

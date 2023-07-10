@@ -1,15 +1,85 @@
-[gd_scene load_steps=8 format=3 uid="uid://r6jkq0iqxc7p"]
+[gd_scene load_steps=17 format=3 uid="uid://r6jkq0iqxc7p"]
 
 [ext_resource type="FontFile" uid="uid://cavcnqogulm5c" path="res://Assets/Fonts/m5x7.ttf" id="1_24n52"]
 [ext_resource type="Script" path="res://Scenes/System/title_screen.gd" id="1_ffpfv"]
 [ext_resource type="Texture2D" uid="uid://bx2oh5f7b5oxv" path="res://Assets/Sprites/Objects/basic_tomato.png" id="2_uxytg"]
+[ext_resource type="Texture2D" uid="uid://ca8hvfpgofe4r" path="res://Assets/Sprites/UI/button.png" id="3_nefef"]
 [ext_resource type="Texture2D" uid="uid://b0c603wiewktg" path="res://Assets/Sprites/Objects/basic_bread.png" id="4_tv1ji"]
 [ext_resource type="Texture2D" uid="uid://bgroqlq6br5c4" path="res://Assets/Sprites/Objects/new_keurig.png" id="5_8eckx"]
 [ext_resource type="Texture2D" uid="uid://dx2grndytdgy2" path="res://Assets/Sprites/Objects/basic_lettuce.png" id="6_rc7ws"]
+[ext_resource type="Texture2D" uid="uid://cxqhpiqntgblm" path="res://Assets/Sprites/Other/title.png" id="7_lo77k"]
+[ext_resource type="Texture2D" uid="uid://ci13wuiaf75i4" path="res://Assets/Sprites/UI/button_hovered.png" id="8_r0vvy"]
 
 [sub_resource type="Gradient" id="Gradient_iomka"]
 offsets = PackedFloat32Array(0, 0.536424, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pue7q"]
+texture = ExtResource("3_nefef")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqeg2"]
+texture = ExtResource("8_r0vvy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qgtam"]
+texture = ExtResource("8_r0vvy")
+
+[sub_resource type="Animation" id="Animation_fv0g7"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-44, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_830r7"]
+resource_name = "hover"
+length = 4.00001
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(-44, -0.25, 0, 0.25, 0, -39, -0.25, 0, 0.25, 0, -44, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6lu50"]
+_data = {
+"RESET": SubResource("Animation_fv0g7"),
+"hover": SubResource("Animation_830r7")
+}
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -29,21 +99,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.898039, 0.807843, 0.705882, 1)
 
-[node name="Button" type="Button" parent="."]
-offset_left = 306.0
-offset_top = 228.0
-offset_right = 335.0
-offset_bottom = 249.0
-theme_override_fonts/font = ExtResource("1_24n52")
-text = "Play"
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2(313, 181)
 lifetime = 8.0
 preprocess = 6.06
 texture = ExtResource("2_uxytg")
 emission_shape = 3
-emission_rect_extents = Vector2(320, 180)
+emission_rect_extents = Vector2(480, 270)
 direction = Vector2(1, 1)
 spread = 0.0
 gravity = Vector2(0, 0)
@@ -51,7 +113,7 @@ initial_velocity_min = 10.0
 initial_velocity_max = 25.0
 scale_amount_min = 3.0
 scale_amount_max = 5.0
-color = Color(1, 1, 1, 0.396078)
+color = Color(1, 1, 1, 0.270588)
 color_ramp = SubResource("Gradient_iomka")
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
@@ -60,7 +122,7 @@ lifetime = 8.0
 preprocess = 6.06
 texture = ExtResource("4_tv1ji")
 emission_shape = 3
-emission_rect_extents = Vector2(320, 180)
+emission_rect_extents = Vector2(480, 270)
 direction = Vector2(1, 1)
 spread = 0.0
 gravity = Vector2(0, 0)
@@ -68,7 +130,7 @@ initial_velocity_min = 10.0
 initial_velocity_max = 25.0
 scale_amount_min = 3.0
 scale_amount_max = 5.0
-color = Color(1, 1, 1, 0.396078)
+color = Color(1, 1, 1, 0.27451)
 color_ramp = SubResource("Gradient_iomka")
 
 [node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
@@ -77,7 +139,7 @@ lifetime = 8.0
 preprocess = 6.06
 texture = ExtResource("5_8eckx")
 emission_shape = 3
-emission_rect_extents = Vector2(320, 180)
+emission_rect_extents = Vector2(480, 270)
 direction = Vector2(1, 1)
 spread = 0.0
 gravity = Vector2(0, 0)
@@ -85,7 +147,7 @@ initial_velocity_min = 10.0
 initial_velocity_max = 25.0
 scale_amount_min = 3.0
 scale_amount_max = 5.0
-color = Color(1, 1, 1, 0.396078)
+color = Color(1, 1, 1, 0.27451)
 color_ramp = SubResource("Gradient_iomka")
 
 [node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
@@ -94,7 +156,7 @@ lifetime = 8.0
 preprocess = 6.06
 texture = ExtResource("6_rc7ws")
 emission_shape = 3
-emission_rect_extents = Vector2(320, 180)
+emission_rect_extents = Vector2(480, 270)
 direction = Vector2(1, 1)
 spread = 0.0
 gravity = Vector2(0, 0)
@@ -102,12 +164,37 @@ initial_velocity_min = 10.0
 initial_velocity_max = 25.0
 scale_amount_min = 3.0
 scale_amount_max = 5.0
-color = Color(1, 1, 1, 0.396078)
+color = Color(1, 1, 1, 0.266667)
 color_ramp = SubResource("Gradient_iomka")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 240.0
+offset_right = 381.0
+offset_bottom = 322.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.929412, 0.882353, 0.619608, 1)
+theme_override_fonts/font = ExtResource("1_24n52")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_pue7q")
+theme_override_styles/hover = SubResource("StyleBoxTexture_iqeg2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qgtam")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_pue7q")
+text = "OPEN"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = -44.0
+offset_right = 640.0
+offset_bottom = 316.0
+mouse_filter = 2
+texture = ExtResource("7_lo77k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+autoplay = "hover"
+libraries = {
+"": SubResource("AnimationLibrary_6lu50")
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

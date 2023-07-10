@@ -77,7 +77,7 @@ offset_bottom = 7.0
 expand_mode = 1
 
 [node name="PatienceTimer" type="Timer" parent="."]
-wait_time = 70.0
+wait_time = 90.0
 one_shot = true
 
 [node name="PatienceBar" type="TextureProgressBar" parent="."]

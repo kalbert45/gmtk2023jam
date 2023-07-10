@@ -53,11 +53,11 @@ func succeed_order():
 	
 func _process(delta):
 	if current_state == STATES.WALKING_TO:
-		progress -= 70 * delta
+		progress -= 80 * delta
 		if progress_ratio == 0.0:
 			think()
 	elif current_state == STATES.WALKING_FROM:
-		progress += 70 * delta
+		progress += 80 * delta
 		if progress_ratio == 1.0:
 			current_state = STATES.EXITING
 			emit_signal("cafe_exit")

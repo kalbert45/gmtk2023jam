@@ -93,7 +93,6 @@ func _on_customer_timer_timeout():
 	
 	for t in tables:
 		if !t.occupant:
-			print('customer spawned')
 			t.generate_customer()
 			visitors -= 1
 			break
@@ -106,5 +105,4 @@ func _on_customer_exit():
 func _set_customer_count(value):
 	customers = value
 	if customers <= 0:
-		print('end_day')
 		SignalBus.emit_signal('end_day')

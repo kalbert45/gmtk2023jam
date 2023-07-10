@@ -1,8 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cda5yjubijqn0"]
+[gd_scene load_steps=10 format=3 uid="uid://cda5yjubijqn0"]
 
 [ext_resource type="Script" path="res://Scenes/System/game_over_screen.gd" id="1_1b31n"]
 [ext_resource type="FontFile" uid="uid://cavcnqogulm5c" path="res://Assets/Fonts/m5x7.ttf" id="2_aisds"]
 [ext_resource type="Texture2D" uid="uid://bynftdmskwl1p" path="res://Assets/Sprites/Other/game_over_background.png" id="2_bbpv8"]
+[ext_resource type="Texture2D" uid="uid://d1rl3ihnx74oq" path="res://Assets/Sprites/UI/retry_button.png" id="4_88a4i"]
+[ext_resource type="Texture2D" uid="uid://w2656ev3cbpq" path="res://Assets/Sprites/UI/retry_button_hovered.png" id="5_0f6dk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ud4j"]
+texture = ExtResource("4_88a4i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1h707"]
+texture = ExtResource("5_0f6dk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2nor5"]
+texture = ExtResource("5_0f6dk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_axtbj"]
+texture = ExtResource("4_88a4i")
 
 [node name="GameOverScreen" type="Control"]
 layout_mode = 3
@@ -20,11 +34,27 @@ offset_bottom = 40.0
 texture = ExtResource("2_bbpv8")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 302.0
-offset_top = 283.0
-offset_right = 338.0
-offset_bottom = 304.0
+layout_mode = 0
+offset_left = 279.0
+offset_top = 273.0
+offset_right = 361.0
+offset_bottom = 315.0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_aisds")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_8ud4j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1h707")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2nor5")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_axtbj")
 text = "Retry"
+
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 293.0
+offset_top = 71.0
+offset_right = 373.0
+offset_bottom = 111.0
+theme_override_fonts/normal_font = ExtResource("2_aisds")
+text = "Day 1"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
