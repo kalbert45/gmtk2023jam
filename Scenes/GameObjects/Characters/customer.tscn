@@ -1,12 +1,141 @@
-[gd_scene load_steps=8 format=3 uid="uid://bon0w1wgo76gs"]
+[gd_scene load_steps=17 format=3 uid="uid://bon0w1wgo76gs"]
 
 [ext_resource type="Script" path="res://Scenes/GameObjects/Characters/customer.gd" id="1_ipmp5"]
 [ext_resource type="Texture2D" uid="uid://b1xg2bwofp0il" path="res://Assets/Sprites/Characters/npc_guy.png" id="2_84rvm"]
+[ext_resource type="Script" path="res://Scenes/GameObjects/Characters/PlayerAnimationPlayer.gd" id="2_ymica"]
 [ext_resource type="Texture2D" uid="uid://dlur0ajk6jade" path="res://Assets/Sprites/Characters/shadow.png" id="3_q64j6"]
 [ext_resource type="Texture2D" uid="uid://cpl6ufctwxo8a" path="res://Assets/Sprites/UI/thinking_bubble.png" id="4_b78r3"]
 [ext_resource type="Texture2D" uid="uid://vnfqgl1ps550" path="res://Assets/Sprites/UI/love_bubble.png" id="4_fdge6"]
 [ext_resource type="PackedScene" uid="uid://dbhcncmv4307i" path="res://Scenes/UI/order.tscn" id="4_l0h85"]
 [ext_resource type="Texture2D" uid="uid://c53hhrgub7e43" path="res://Assets/Sprites/UI/angry_bubble.png" id="5_d734y"]
+
+[sub_resource type="Animation" id="Animation_fkmt8"]
+resource_name = "Front_Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPCSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_xhie7"]
+resource_name = "Back_Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPCSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_aqaf5"]
+resource_name = "Front_walk"
+length = 0.40002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPCSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_186xp"]
+resource_name = "Back_walk"
+length = 0.40002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPCSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_m0a24"]
+resource_name = "Right_walk"
+length = 0.80002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPCSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 6, 8]
+}
+
+[sub_resource type="Animation" id="Animation_rqgws"]
+resource_name = "Left_walk"
+length = 0.80002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPCSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 3, 5]
+}
+
+[sub_resource type="Animation" id="Animation_ghk5f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPCSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hvlbn"]
+_data = {
+"Back_Idle": SubResource("Animation_xhie7"),
+"Back_walk": SubResource("Animation_186xp"),
+"Front_Idle": SubResource("Animation_fkmt8"),
+"Front_walk": SubResource("Animation_aqaf5"),
+"Left_walk": SubResource("Animation_rqgws"),
+"RESET": SubResource("Animation_ghk5f"),
+"Right_walk": SubResource("Animation_m0a24")
+}
 
 [node name="Customer" type="PathFollow2D"]
 show_behind_parent = true
@@ -23,6 +152,10 @@ wait_time = 5.0
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hvlbn")
+}
+script = ExtResource("2_ymica")
 
 [node name="NPCSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_84rvm")
@@ -53,9 +186,9 @@ texture = ExtResource("4_b78r3")
 [node name="Order" parent="." instance=ExtResource("4_l0h85")]
 visible = false
 offset_left = -13.0
-offset_top = -42.0
+offset_top = -44.0
 offset_right = -13.0
-offset_bottom = -42.0
+offset_bottom = -44.0
 
 [connection signal="timeout" from="ThinkingTimer" to="." method="_on_thinking_timer_timeout"]
 [connection signal="timeout" from="EatingTimer" to="." method="_on_eating_timer_timeout"]

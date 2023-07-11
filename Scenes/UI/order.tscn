@@ -34,9 +34,9 @@ offset_bottom = 27.0
 
 [node name="Ingredients" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = -3.0
+offset_left = -4.0
 offset_top = 20.0
-offset_right = 37.0
+offset_right = 36.0
 offset_bottom = 60.0
 theme_override_constants/separation = 1
 
@@ -48,9 +48,10 @@ stretch_mode = 2
 
 [node name="tex1" type="TextureRect" parent="Ingredients/bubble1"]
 layout_mode = 0
-offset_right = 10.0
-offset_bottom = 7.0
+offset_right = 11.0
+offset_bottom = 8.0
 expand_mode = 1
+stretch_mode = 5
 
 [node name="bubble2" type="TextureRect" parent="Ingredients"]
 visible = false
@@ -60,9 +61,10 @@ stretch_mode = 2
 
 [node name="tex2" type="TextureRect" parent="Ingredients/bubble2"]
 layout_mode = 0
-offset_right = 10.0
-offset_bottom = 7.0
+offset_right = 11.0
+offset_bottom = 8.0
 expand_mode = 1
+stretch_mode = 5
 
 [node name="bubble3" type="TextureRect" parent="Ingredients"]
 visible = false
@@ -72,9 +74,10 @@ stretch_mode = 2
 
 [node name="tex3" type="TextureRect" parent="Ingredients/bubble3"]
 layout_mode = 0
-offset_right = 10.0
-offset_bottom = 7.0
+offset_right = 11.0
+offset_bottom = 8.0
 expand_mode = 1
+stretch_mode = 5
 
 [node name="PatienceTimer" type="Timer" parent="."]
 wait_time = 90.0

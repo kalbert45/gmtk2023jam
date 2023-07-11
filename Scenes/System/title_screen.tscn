@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://r6jkq0iqxc7p"]
+[gd_scene load_steps=18 format=3 uid="uid://r6jkq0iqxc7p"]
 
 [ext_resource type="FontFile" uid="uid://cavcnqogulm5c" path="res://Assets/Fonts/m5x7.ttf" id="1_24n52"]
 [ext_resource type="Script" path="res://Scenes/System/title_screen.gd" id="1_ffpfv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dx2grndytdgy2" path="res://Assets/Sprites/Objects/basic_lettuce.png" id="6_rc7ws"]
 [ext_resource type="Texture2D" uid="uid://cxqhpiqntgblm" path="res://Assets/Sprites/Other/title.png" id="7_lo77k"]
 [ext_resource type="Texture2D" uid="uid://ci13wuiaf75i4" path="res://Assets/Sprites/UI/button_hovered.png" id="8_r0vvy"]
+[ext_resource type="Texture2D" uid="uid://bi73n1pmrwysb" path="res://Assets/Sprites/UI/open_sign.png" id="9_glt6i"]
 
 [sub_resource type="Gradient" id="Gradient_iomka"]
 offsets = PackedFloat32Array(0, 0.536424, 1)
@@ -181,7 +182,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_pue7q")
 theme_override_styles/hover = SubResource("StyleBoxTexture_iqeg2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_qgtam")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_pue7q")
-text = "OPEN"
+icon = ExtResource("9_glt6i")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0

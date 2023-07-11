@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dq620rwjjkjw6"]
+[gd_scene load_steps=22 format=3 uid="uid://dq620rwjjkjw6"]
 
 [ext_resource type="Texture2D" uid="uid://bsax2kwtouytw" path="res://Assets/Sprites/Other/background.png" id="1_18gws"]
 [ext_resource type="Script" path="res://Scenes/System/main.gd" id="1_kgiil"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://3n7tp3oxxe5m" path="res://Scenes/GameObjects/Counters/trash_can.tscn" id="5_fwkww"]
 [ext_resource type="PackedScene" uid="uid://cbk6tsfv8inka" path="res://Scenes/GameObjects/Counters/table.tscn" id="7_4bv3n"]
 [ext_resource type="FontFile" uid="uid://cavcnqogulm5c" path="res://Assets/Fonts/m5x7.ttf" id="9_iy5xr"]
+[ext_resource type="Texture2D" uid="uid://bhobpacnxovor" path="res://Assets/Sprites/Counters/filler_counter.png" id="9_ofpnj"]
 [ext_resource type="Texture2D" uid="uid://bmwry0gnx4hy3" path="res://Assets/Sprites/UI/life.png" id="10_0s6mg"]
+[ext_resource type="Texture2D" uid="uid://d38peo66tswav" path="res://Assets/Sprites/Objects/cafe_sign.png" id="10_hbd2l"]
 [ext_resource type="Script" path="res://Scenes/System/LifeHandler.gd" id="10_wipwr"]
 
 [sub_resource type="Animation" id="Animation_34554"]
@@ -50,6 +52,9 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30aum"]
+size = Vector2(30, 20)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_kgiil")
 
@@ -71,7 +76,7 @@ visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(-180, -147, 303, -147, 303, 180, -303, 180, -303, -2, -180, -2)
+polygon = PackedVector2Array(-180, -147, 303, -147, 303, 180, -303, 180, -303, 61, -180, 61)
 
 [node name="Sort" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -174,6 +179,25 @@ path = NodePath("Path2D")
 [node name="Path2D" type="Path2D" parent="Sort/Tables/table5"]
 show_behind_parent = true
 curve = SubResource("Curve2D_e1s1s")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sort"]
+position = Vector2(159, 158)
+texture = ExtResource("9_ofpnj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sort/Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sort/Sprite2D/StaticBody2D"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_30aum")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sort"]
+position = Vector2(159, 38)
+texture = ExtResource("9_ofpnj")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sort"]
+position = Vector2(183, 287)
+texture = ExtResource("10_hbd2l")
+offset = Vector2(0, -12)
 
 [node name="DayLabel" type="RichTextLabel" parent="."]
 offset_left = 20.0
